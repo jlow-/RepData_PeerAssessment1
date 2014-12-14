@@ -43,8 +43,13 @@ Make a histogram of the total number of steps taken each day
 ```r
 Steps_per_day <- aggregate(Steps ~ Date, data = clean_data, FUN = sum)
 png(filename='source data/plot1.png',width=480,height=480,units='px')
+```
+
+```r
 hist(Steps_per_day$Steps,main='Histogram of total number of steps per day',xlab='Number of steps',col='blue')
 ```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 Remember to close the file
 
 ```r
@@ -80,6 +85,9 @@ Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and 
 ```r
 Steps_by_time <- aggregate(Steps ~ Time, data = clean_data, FUN = mean)
 png(filename='source data/plot2.png',width=480,height=480,units='px')
+```
+
+```r
 plot(x = Steps_by_time$Time,
      y = Steps_by_time$Steps,
      main='Average number of steps, averaged over all days',
@@ -87,7 +95,11 @@ plot(x = Steps_by_time$Time,
      ylab='Average number of steps',
      type = 'l',
      col='blue')
+```
 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+```r
 # Turn off device
 x<-dev.off()
 ```
@@ -152,8 +164,13 @@ Plot the graph
 ```r
 Steps_per_day1 <- aggregate(Steps ~ Date, data = tidy_raw, FUN = sum)
 png(filename='source data/plot3.png',width=480,height=480,units='px')
+```
+
+```r
 hist(Steps_per_day1$Steps,main='Histogram of total number of steps per day \n(Imputing missing values)',xlab='Number of steps',col='blue')
 ```
+
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
 
 Turn off device
 
@@ -253,11 +270,15 @@ Steps_by_time1 <- aggregate(Steps ~ Time+day_type, data = tidy_raw, FUN = mean)
 names(Steps_by_time1) <- c("Time", "Day_type", "Steps")
 
 library(lattice)
-
 png(filename='source data/plot4.png',width=480,height=480,units='px')
+```
+
+```r
 xyplot(Steps ~ Time | Day_type, data = Steps_by_time1, type = "l", xlab = "Time", 
        ylab = "Number of steps", layout = c(1, 2))
 ```
+
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png) 
 
 Turn off device
 
